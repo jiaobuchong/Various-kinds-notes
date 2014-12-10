@@ -1,0 +1,20 @@
+> sqlite test.db #这样就打开一个数据库
+> .tables        #查看有多少个表
+> .schema        #查看表的结构
+> .database      #查看当前所挂的数据库
+> .output ./test.txt   #将输出内容输出到一个文件
+> .output stdout     #标准输出到屏幕
+> .dump 表名     #将表的结构输出，同时会将索引也输出
+
+>其他的都是正常的sql语句
+sqlite> .mode column
+sqlite> .headers on
+sqlite> select * from users;   #这是查询结果
+id          name        dob       
+----------  ----------  ----------
+1           James Lee   2002-3-14 
+2           Sarah Swee  2002-6-17 
+3           Julie Jone  2002-8-17 
+4           Mikey McMa  2002-2-24 
+
+

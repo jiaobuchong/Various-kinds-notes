@@ -1,0 +1,330 @@
+list
+>>> movies = ['The Holy Grail', 'The life of Brian', 'The meaning of life']
+>>> movies.insert(1, 1975)
+>>> movies.insert(3, 1979)
+>>> movies.append(1983)
+>>> movies
+['The Holy Grail', 1975, 'The life of Brian', 1979, 'The meaning of life', 1983]
+>>> 
+
+iterate your list:
+
+>>> for each_flick in movies:
+...     print(each_flick)
+... 
+The Holy Grail
+1975
+The life of Brian
+1979
+The meaning of life
+1983
+>>> 
+
+while:
+>>> count = 0
+>>> while count < len(movies):
+...     print(movies[count])
+...     count += 1
+... 
+The Holy Grail
+1975
+The life of Brian
+1979
+The meaning of life
+1983
+>>> 
+
+isinstance BIF let you check if a specific identifier holds data of specific type
+>>> names = ['Jack', 'Tom']
+>>> isinstance(names, list)
+True
+>>> 
+
+dir(__builtins__)  可以看到python提供的内置方法列表所有那些小写字母都是BIF， help(input) 就会得到这个input的功能描述
+handle many levels of nested lists,处理多维数组：
+>>> nums
+[4, 5, 6, [7, 8, [10, 34, 27]]]
+>>> nums[3][2][1]
+34
+>>> for each_num in nums:
+...     if (isinstance(each_num, list)):
+...             for nested_num in each_num:
+...                     if isinstance(nested_num, list):
+...                             for deeper_num in nested_num:
+...                                     print(deeper_num)
+...                     else:
+...                             print(nested_num)
+...     else:
+...             print(each_num)
+... 
+4
+5
+6
+7
+8
+10
+34
+27
+>>> 
+
+reusable function:
+nums = [4, 5, 6, [7, 8, [10, 34, 27]]]
+def print_lol(the_list):
+     for each_num in the_list:
+         if isinstance(each_num, list):
+             print_lol(each_num)   #递归
+         else:
+             print each_num
+print_lol(nums)
+
+Python Lingo(术语)
+"BIF"a built in function (内置函数)
+"Suite" a block of Python code, which is indented to indicate grouping (作用域，代码块，通过缩进来指示分组)
+"Batteries included" 功能齐全
+
+>>> import sys
+>>> sys.path          #Python interpreter searches for modules
+
+#导入模块
+import nester  #调用nester中的print_lol函数时，nester.print_lol
+from nester import print_lol  #可以直接调用nester中的print_lol函数
+
+BIF:
+list()   #工厂方法创建一个空的、新的列表
+range()
+enumerate()
+int()   
+id()
+next()
+
+文件：
+>>> import os
+>>> os.getcwd()
+'/home/jack/python'   #current working directory
+>>> os.chdir('./file')  #change the folder,切换目录
+>>> os.getcwd()
+'/home/jack/python/file'
+>>> 
+>>> data = open('sketch.txt')
+>>> print(data.readline(), end='')   #读文件中的一行数据
+dnvidbsvisd
+>>> print(data.readline(), end='')   #读取下一行数据
+vdsbkjvbsdklv
+>>> 
+
+>>> data.seek(0)    #让文件指针指到文件的开始
+0
+>>> for each_line in data:
+...     print(each_line, end='')
+... 
+dnvidbsvisd
+vdsbkjvbsdklv
+dvbkjsdvbs
+sdvjkdsvbsdvcosdvns
+sbv skjdvionv  v速度呢
+我是周杰，我为自己代言
+我是周杰，我为自己代言
+我是周杰，我为自己代言
+
+>>> data.close()  #关闭文件资源
+
+这是sketch.py里的代码：
+ data = open('sketch.txt')
+ for each_line in data:
+     (role, line_spoken) = each_line.split(':')    #这里在运行时会有个问题，比如一句话里有多个" : "怎么办，所以得告诉python有多少次分割 ValueErrors
+     print(role, end='')
+     print(' said: ', end='')
+     print(line_spoken, end='')
+ data.close()
+
+改进后的代码：
+ data = open('sketch.txt')
+ for each_line in data:
+     (role, line_spoken) = each_line.split(':'， 1)    #这里在运行时还会有个问题，比如sktch.txt中有空行怎么办，空的一行怎么去找" : " ValueErrors
+     print(role, end='')
+     print(' said: ', end='')
+     print(line_spoken, end='')
+ data.close()
+
+再改进：
+ data = open('sketch.txt')
+ for each_line in data:
+     if not each_line.find(':') == -1:
+         (role, line_spoken) = each_line.split(':'， 1)    #perfect
+         print(role, end='')
+         print(' said: ', end='')
+         print(line_spoken, end='')
+ data.close()
+
+即使在你的文本文件sketch.txt中保证了一行只有一个 ":", 并且没有空行，但如果你的代码还是像开始的一样没有经过处理，python解释器是不会允许的
+还是会弹出一个run time错误
+
+import os
+if os.path.exists('sketch.txt'):      #检测文件是否存在
+else:                                  
+
+但解决之道还可以使用 异常处理机制
+If you try to code for every possible error, you'll be at it fot a long time, because all that extra logic takes a while to work out.
+
+对上面的代码使用异常处理机制：
+ 10 try:
+ 11     data = open('sketch.txt')
+ 12     for each_line in data:
+ 13         try:
+ 14             (role, line_spoken) = each_line.split(':', 1)   #空行时的runtime error通过错误处理机制搞定了
+ 15             print(role, end='')
+ 16             print(' said: ', end='')
+ 17             print(line_spoken, end='')
+ 18         except:
+ 19             pass
+ 20     data.close()
+ 21 except:
+ 22     print('The data file is missing!')     #文件不存在时，错误处理机制也搞定了 File I/O errors
+
+对上面的代码使用特定的异常处理机制：
+ 10 try:
+ 11     data = open('sketch.txt')
+ 12     for each_line in data:
+ 13         try:
+ 14             (role, line_spoken) = each_line.split(':', 1)   #空行时的runtime error通过错误处理机制搞定了
+ 15             print(role, end='')
+ 16             print(' said: ', end='')
+ 17             print(line_spoken, end='')
+ 18         except ValueError:    #ValueError 
+ 19             pass
+ 20     data.close()
+ 21 except IOError:
+ 22     print('The data file is missing!')     #文件不存在时，错误处理机制也搞定了 File I/O errors
+
+将你的数据保存在文件里：
+用BIF open()打开一个文件时，默认是以可读的形式打开  open('sketch.txt', 'w')   以可写的形式打开一个文件
+>>> out = open('test.txt', 'w')   #以可写的形式打开一个文件
+>>> print('write to file', file=out)   #这样就可以写入文件了
+>>> out.close()
+output = open('data', 'w+')   #追加的形式写文件
+
+下面的代码就是将数据写入到你的文件：
+  1 open('sketch.txt')
+  2 man = []
+  3 girl = []
+  4 
+  5 try:
+  6     data = open('sketch.txt')
+  7     for each_line in data:
+  8         try:
+  9             (role, line_spoken) = each_line.split(':', 1)
+ 10             line_spoken = line_spoken.strip()              #去除字符串的首位空格
+ 11             if role == 'Man':
+ 12                 man.append(line_spoken)      #向一个列表后加入字符串
+ 13             elif role == 'Girl':
+ 14                 girl.append(line_spoken)
+ 15         except ValueError:
+ 16             pass
+ 17     data.close()
+ 18 except IOError:
+ 19     print('The datafile is missing!')
+ 20 #print(man)
+ 21 #print(girl)
+ 22 
+ 23 try:
+ 24     man_file = open('man.txt', 'w')
+ 25     girl_file = open('girl.txt', 'w')
+ 26 
+ 27     print(man, file=man_file)     #将数据写入到文件
+ 28     print(girl, file=girl_file)
+ 29 
+ 30     #man_file.close()     
+ 31     #girl_file.close()   最好不要在这写关闭文件，万一上面的数据出问题了，就中断了文件就得不到关闭了
+ 32 except IOError:
+ 33     print('file error')
+ 34 finally:
+ 35    if 'man_file' in locals():
+ 36        man_file.close()
+ 37    if 'girl_file' in locals():
+ 36        girl_file.close()   #无论出现什么问题，这段代码都会执行
+
+locals()   #返回当前程序范围内的变量，以字典的形式返回
+if data in locals():  
+
+上面的23到36行可以写成下面这样：
+ 21 try:
+ 22     with open('man.txt', 'w') as man_file, open('girl.txt', 'w') as girl_file:  用了with之后不必考虑关闭文件的细节
+ 23         print(man, file=man_file)
+ 24         print(girl, file=girl_file)
+ 25 except IOError as err:
+ 26     print('file error:' + str(err))
+
+sys.stdout 标准输出
+
+import pickle  #腌制数据
+pickle.dump()和pickle.load()将数据写入文件或从文件中读取数据
+
+排序的两种方法：
+in-place sorting  ,如：
+>>> data = [2, 3, 5, 1, 10, 9]
+>>> data.sort()
+>>> data
+[1, 2, 3, 5, 9, 10]
+>>> 
+
+copied sorting   #sorted() 如:
+>>> data = [2, 3, 5, 1, 10, 9]
+>>> data1 = sorted(data)
+>>> data
+[2, 3, 5, 1, 10, 9]
+>>> data1
+[1, 2, 3, 5, 9, 10]
+>>> 
+
+#下面有两份时间的文本文件，
+james.txt:
+2-34, 3:21, 2.34, 2.45, 3.01, 3-01, 2:01, 3:10, 2-22
+miky.txt:
+2:22, 3.01, 3:01, 3.02, 3:02, 3.02, 3:22, 2.49, 2:38
+下面的代码是对这两个文本文件中的时间进行一个排序：
+1 #process the string to replace any dashes or colons found with a period and return the sanitized string
+  2 def sanitize(time_string):
+  3     time_string = time_string.strip()
+  4     if '-' in time_string:
+  5         splitter = '-'
+  6     elif ':' in time_string:
+  7         splitter = ':'
+  8     else:
+  9         return(time_string)
+ 10     (mins, secs) = time_string.split(splitter)
+ 11     return(mins + '.' + secs)
+ 12 
+ 13 #reads the data from the data files remains unchanged
+ 14 with open('james.txt') as jam: data = jam.readline()
+ 15 jams = data.strip().split(',')
+ 16 with open('miky.txt') as mik: data = mik.readline()
+ 17 miky = data.strip().split(',')
+ 18 
+ 19 #create two new, initially empty lists
+ 20 clean_jams = []
+ 21 clean_miky = []
+ 22 
+ 23 #take each of the data items in the original lists,sanitize them, and them append the sanitized data to the new list
+ 24 for each_t in jams:
+ 25     clean_jams.append(sanitize(each_t))
+ 26 for each_t in miky:
+ 27     clean_miky.append(sanitize(each_t))
+ 28 
+ 29 #display the sorted list
+ 30 print(sorted(clean_jams, reverse = True))
+ 31 print(sorted(clean_miky, reverse = True))
+
+根据List Comprehension通常用于从一个已经存在列表生成一个新的列表，所以20行到27行的代码可以换为：
+clean_jams = [sanitize(each_t) for each_t in jams]
+clean_miky = [sanitize(each_t) for each_t in miky]
+将近8行的代码两行就搞定了
+The beauty of list comprehensions
+
+set()  集合，类似数学上的集合，一个集合不能有重复的元素
+python中类定义完毕后产生类对象, 类对象才能产生实例对象, 
+工厂函数(factory function)
+python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.  
+sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记录元素位置或者插入点。因此，sets不支持 indexing, slicing, 或其它类序列（sequence-like）的操作。 
+      
+这是改进后的代码：
+                                                                                                               

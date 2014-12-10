@@ -1,0 +1,28 @@
+CREATE DATABASE test
+    DEFAULT CHARACTER SET latin1 COLLCATE latin1_swedish_ci;   #创建数据库时指定字符集
+CREATE TABLE some ()
+    DEFAULT CHARACTER SET charset_name [COLLATE collation_name];
+ALTER TABLE tb_name DEFAULT CHARACTER SET charset_name [COLLATEV collation_name];
+
+ 1、导出數據库為dbname的表结构（其中用戶名為root,密码為dbpasswd,生成的脚本名為db.sql）
+    mysqldump -uroot -pdbpasswd -d dbname >db.sql;
+ 2、导出數據库為dbname某张表(test)结构
+    mysqldump -uroot -pdbpasswd -d dbname test>db.sql;
+ 3、导出數據库為dbname所有表结构及表數據（不加-d）
+    mysqldump -uroot -pdbpasswd  dbname >db.sql;
+ 4、导出數據库為dbname某张表(test)结构及表數據（不加-d）
+    mysqldump -uroot -pdbpasswd dbname test>db.sql;
+
+导入数据库：
+use dbname
+source /var/www/test.sql
+
+修改表名： alter table old_name rename to new_name;
+show create table table_name;   #查看引擎
+
+在book表中的ID列后增加title列的语句如下:
+alter table book add title varchar(1024) not null default '' after id;
+
+truncate table_name;  清空数据表的数据
+
+show variables like 'cha%';
