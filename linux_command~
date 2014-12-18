@@ -164,8 +164,6 @@ find . -type f -exec ls -l '{}' ';'    #'{}'代表我们找到的那些文件名
 find demo/ -type d -exec chmod 777 '{}' ';'
 find demo/ -type f -exec chmod 777 '{}' ';'  #只改变文件的权限
 
-which sublime 可以查看sublime命令在哪个位置
-
 read:4 
 write:2 
 execute:1

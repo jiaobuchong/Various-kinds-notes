@@ -40,7 +40,22 @@ drwxr-xr-x 3 jack jack 4096 Jun  4 11:28 cgi-bin
 文件的上次修改时间
 文件名或目录名
 
+ls -s  列出文件的块大小
+ls -a  列出所有文件
+ls -i  列出每个文件的索引节点
+ls -l  产生一个长列表
 jack@jiaobuchong:~/python/object-oriented/mvc/webapp$ ls -sail
 total 64
 2098601  4 -rw-rw-r-- 1 jack jack   796 Jun  8 09:22 athletes.pickle
+64是包含块的总数
+下面第一个数字是文件或目录的索引节点号，文件或目录的索引节点是内核分配给文件系统中每个对象的唯一标识符。
+第二个数字是文件的块大小，第三个数字是指向文件的硬链接数，第四个是文件的大小，然后是文件的最后修改时间。
+
+首先登陆服务器终端之间执行:echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+这样就可以禁ping了。如果想恢复ping可以执行命令
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+
+
+
+
 

@@ -51,5 +51,12 @@ total 64
 下面第一个数字是文件或目录的索引节点号，文件或目录的索引节点是内核分配给文件系统中每个对象的唯一标识符。
 第二个数字是文件的块大小，第三个数字是指向文件的硬链接数，第四个是文件的大小，然后是文件的最后修改时间。
 
+防止其他用户ping我的linux:
+首先登陆服务器终端之间执行:echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+这样就可以禁ping了。如果想恢复ping可以执行命令
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+
+
+
 
 
