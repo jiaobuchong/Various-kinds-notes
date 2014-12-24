@@ -1,0 +1,42 @@
+mysql -uroot -p #启动mysql
+sudo /etc/init.d/apache2 restart #重新启动apache服务器
+
+sudo apt-get install php5 libapache2-mod-php5 #安装php5并让apache支持php
+chmod 777 /var/www/ #对这个授予权限
+
+sudo apt-get install php5-mysql php5-curl php5-gd php5-idn php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps
+     php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl
+安装php支持mysql数据库的相应模块以及gd库什么的，以及一些其他的常用模块
+
+各个配置文件：
+/etc/php5/apache2/php.ini
+/etc/mysql/my.cnf
+/etc/apache2/apache2.conf
+
+mysql统一编码：
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
+//打开错误信息提醒
+display_errors = On
+error_reporting = E_ALL & ~E_NOTICE
+or
+error_reporting = E_ALL | E_STRICT
+
+/etc/apache2/httpd.conf
+php_flag display_errors on
+php_value error_reporting 2039
+
+/usr/lib/php5/20090626+lfs/ 这个文件夹下有很多.so的文件，php的扩展文件夹，是php的一些扩展
+/etc/php5/conf.d 这个文件夹下为每个扩展建立配置文件
+
+tail -f /var/log/apache2/error.log //查看apache的错误日志
+一般从windows里面的php项目拷到linux中时，要把相应的文件的权限改为664就行，把目录的权限775,如果是上传目录，则只能是777了
+或者将文件夹或文件修改web服务器的所属的用户或组
+
