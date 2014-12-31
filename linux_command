@@ -174,4 +174,7 @@ execute:1
 
 man 一个命令时，显示的内容会比较多，f(forward)向下翻动一页，b(backward)向后翻动一页
 
+!m 执行上面的一个以m开头的命令
+fg 
+
 
