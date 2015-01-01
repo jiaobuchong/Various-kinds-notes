@@ -1,0 +1,48 @@
+gdb 调试工具
+内存泄露(memory leak):你忘记了你在堆中申请的内存在哪里。
+	int * a;
+	int * b;
+	a = malloc(sizeof(int));  //malloc在堆中分配内存
+	*a = 42;  //a = 42;(内存泄露)
+    
+pc load letter 放入标准纸张
+office space 上班一条虫
+
+It's on the stack that any local variables(局部变量) go.
+Any time you call a function it gets a chunk of memory called a frame on the stack.And you keep layering again and again every time one function calls another.But then as soon as that function recall stops executing.That momory goes away or at least it's no longer valid so it's not safe to trust.
+
+garbage valeus:
+int x;
+recall that using printf and printed
+it was some completely random value
+if you're using this stack and reusing this stack,it just happens to have been put inside RAM where something once was.
+It's terribly important to always initialize variables.
+
+buffer overflow explot "缓冲溢出攻击" 
+
+heap:
+the momory you allocalte on the heap does not get reused until you yourself free it up.So if you ask the operating system for memory and you grab it from this thing called the heap,that memory is yours until you call a function free().
+
+Hexadecimal(16进制) tends to be used when you start talking  about larger numbers because you can fit more information into fewer characters.
+
+RGB     FF0000(red) 00ff00(green) 0000ff(blue)
+
+local variables in main and it's a decently high, a big address.Local variables in foo but its address is small.So that't means big address in RAM are actually at the bottom.Small addresses in RAM at higter up.
+
+The most common attacks:
+#include<stdio.h>
+#include<string.h>
+void foo(char *bar)
+{
+	char c[21];
+	memcpy(c, bar, strlen(bar));   //no boundry checking
+}
+int main(int argc, char **argv)
+{
+	foo(argv[1]);
+}
+buffer overflow 
+
+typedef char * string;
+
+ 

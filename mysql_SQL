@@ -22,6 +22,7 @@ show create table table_name;   #查看引擎
 
 在book表中的ID列后增加title列的语句如下:
 alter table book add title varchar(1024) not null default '' after id;
+alter table goods change goods_img goods_img vahchar(255) not null default '';     #修改一列
 
 truncate table_name;  清空数据表的数据
 
