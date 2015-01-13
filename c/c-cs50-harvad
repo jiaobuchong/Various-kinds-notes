@@ -45,4 +45,58 @@ buffer overflow
 
 typedef char * string;
 
- 
+sftp  secure file transfer protocol
+NULL \0
+NULL's type is a pointer (void * ) 0 This means yes, it's zero, but it's  pointer
+\0 is a character
+if (s[i] == '\0')
+{
+    break;
+}
+
+segfault: Because you've touched memory that doesn't belong to you.
+Valgrind:analyze your code for you, tell you've made memeory-related mistakes
+valgrind -v --leak-check=full a.out (-v tell me as much as you can, --leak-check=full says do all of the memory leak tests
+                                    that the program is designed to support)
+one hexadecimal(16进制数) represent four bits, two represent eight bits, that's one byte.
+0x01 = 00000001
+0x02 = 00000010
+0x03 = 00000011
+
+&  bitwise AND
+|  bitwise OR
+^  bitwise XOR
+~  ones complement
+<< left shift
+>> right shift
+
+int mask = 1; 
+00000000 00000000 00000000 00000001
+mask << 31;
+mask: 10000000 00000000 00000000 00000000 
+int n = 3; 
+  3:  00000000 00000000 00000000 00000011
+n & mask:
+      00000000 00000000 00000000 00000000
+
+
+RAID redundant array of independent disks 独立冗余磁盘阵列
+
+pointer star * means go there 
+
+implement a stack 
+typedef struct
+{
+    int numbers[CAPACITY];
+    int size ;
+    int top;
+}stack;
+
+                  Hasb Table
+int hash(int n)
+{
+    //if something at [n % 26];
+    //probe array
+}
+
+traceroute www.baidu.com   跟踪经过了路由器
