@@ -100,3 +100,23 @@ int hash(int n)
 }
 
 traceroute www.baidu.com   跟踪经过了路由器
+
+film:上班一条虫
+
+php:
+$sql = "select * from user where id = {$_SESSION["uid"]}";
+
+hashtable:
+$hashtable = array();
+function load($dict)
+{
+    for(file($dict) as $word)
+        $hashtable[$word] = true;
+}
+function check($word)
+{
+    if ($hashtable[$word])
+        return true;
+    else
+        return false;
+}
