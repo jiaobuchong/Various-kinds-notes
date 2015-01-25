@@ -176,6 +176,8 @@ man 一个命令时，显示的内容会比较多，f(forward)向下翻动一页
 !m 执行上面的一个以m开头的命令
 fg 
 
+du -hs *  list current directory, every directory's 
+查看目录下所有目录的大小并按大小降序排列：sudo du -sm /etc/* | sort -nr | less 
 
 
 
