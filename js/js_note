@@ -1,0 +1,99 @@
+学习javascript要分清：
+1、js语言本身的语法
+2、DOM对象(把body,div,p等节点看成一个对象)
+3、BOM对象(把浏览器的地址栏，历史记录，DOM等装在一个对象)
+
+变量 不用var会污染全局
+
+变量类型(特别)：
+布尔类型 var e = true
+null型 var f = null
+
+undefined型,未定义 var g = undefined
+var a = 12;
+var b = 3.24;
+var c = 'hello';
+var d = true;
+var e = null;
+var f = undefined;   //未定义
+null表示没有对象，undefined表示没有原生数据
+浏览器在渲染网页时，一切标签都是对象，如果没有某个标签就是null
+var g = {name:'list', age:29};   引用g['name']
+for (var k in g)  //k时键值
+{
+    console.log(g[k]);
+}
+
+数组 var arr = [3, 4, 'hello', 3.24]; 引用arr[0]
+
+拼接运算符：+
+console.log(2+3+4+'he'+3+4)  //9he34
+
+________________________________________________________________________
+对象操作
+字符串对象
+数组对象
+……
+
+________________________________________________________________________
+js内置对象：
+var dt = new Date();
+console.log(gt.getDay());
+Math对象调用,Math对象的方法全是静态方法
+console.log(Math.floor(2.3));
+Math.random();  返回[0-1)
+
+________________________________________________________________________
+浏览器window对象：
+window对象时浏览器宿主对象，和JS语言无关
+window对象的方法：
+window.alert()
+window.confirm()
+window.prompt()
+window.close() 关闭窗口
+window.print() 打印
+
+window.setIntval(表达式毫秒)
+window.clearIntval(定时器对象)
+window.setTimeOut(表达式，毫秒)
+window.clearTimeout(定时器对象)
+
+window.navigator
+navigator对象下面有很多小对象
+比如window.navigator.cookieEnabled可以判断用户客户端的浏览器是否禁用cookie
+window.location.href="http://www.baidu.com" 地址栏会跳到www.baidu.com主页
+
+历史记录:
+window.history
+
+screen屏幕对象
+ height高度
+ width宽度
+ availHeight 可用高度(排除了滚动条)
+ avaiWidth 可用宽度
+ colorDepth 颜色
+
+window.document (HTML文档对象)
+
+________________________________________________________________________
+var的重要性
+加var是声明变量，在哪声明就在哪个作用域内。不加仅仅是一个赋值操作， 
+如下面一段代码：
+    <script type="text/javascript">
+        window.str1 = 'union';
+        function t1()
+        {
+            var str1 = 'China';
+            function t2()
+            {
+            //    var str1 = 'Japan';
+           		str1 = 'Japan'; 
+                document.write(str1);   //print Japan
+            }
+            t2();
+        }
+        t1();
+        document.write(str1);    //print Japan
+    </script>   
+执行str1 = 'Japan'时，t2()中没有声明str1,
+会一直向上找发现一个全局的window.str1,就将"Japan字符串"赋值给了str1

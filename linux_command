@@ -143,6 +143,12 @@ date -s "2014-10-29 18:52:55"
 chown -vR mysql:mysql /mysqldata    # ":"前面是用户，后面是组
 -R 处理指定目录以及其子目录下的所有文件
 -v 显示详细的处理信息
+chmod u+x,u-x go.sh
+chmod u+rwx go.sh
+chmod 640 go.sh    #通过数字去赋予一个文件权限
+groupadd onegroup 创建组
+useradd oneuser 创建用户
+chgrp onegroup oneuser 把一个用户添加到组里面
 
 cp -a test3 test5    #加上-a参数复制整个目录，如果test5存在，test3会被放入test5中
 cp hello world                    #将hello文件内容复制到world文件
@@ -179,5 +185,6 @@ fg
 du -hs *  list current directory, every directory's 
 查看目录下所有目录的大小并按大小降序排列：sudo du -sm /etc/* | sort -nr | less 
 
-
+whereis ls 查看ls的二进制可执行文件在哪里
+whatis ls 查看ls的功能
 
