@@ -1,4 +1,4 @@
-:%s/a/b/g           #%s是替换的模式，将文本中的a替换为b，g代表从行首到行尾
+:%s/a/b/g           #%s是替换的模式(表示全文替换)，将文本中的a替换为b，g代表从行首到行尾
 :n1,n2s/word1/word2/gc
 从 n1 行到 n2 行之间寻找 word1，并替换成 word2
 c 用来询问
@@ -8,6 +8,7 @@ n1, n2 可替换成 $ 代表最后一行
 :1, 10s/^/\/\//g    #1到10行加 // 注释  :n1, n2s/old/new/g
 :! 执行shell命令    :! ls -l
 :/php    #查询文本中的php这个单词，按n键上下走
+:set ic   忽略大小写
 :w hello.py  #将当前文件另存为hello.py
 :4, 8 d       #将4到8行删除
 :set fileencoding  #显示当前文件的默认编码
@@ -28,7 +29,7 @@ dG 删除文档中全部内容
 p、P 大写的P在光标的行上复制
 
 vim 技巧
-:r /etc/test.php test.php中的内容将被倒入到当前的文件中，
+:r(在命令模式下) /etc/test.php test.php中的内容将被倒入到当前的文件中，
 :! which ls  执行shell 命令
 
 :r !date  将命令的结果写入当前文件中
@@ -123,6 +124,14 @@ ctrl+d    往左移动对齐  设置tab为4个空格，而某行只缩进了3个
   b. 选定要取消的注释符;
   c. 按下“x”或者“d”.
 
+zz 编辑行定位到屏幕中间，zt和zb分别定位到屏幕顶部和底部
 
+定义快捷键
+在命令模式下
+:map ctrl+vp I//<ESC>  (这样就可以按ctrl+p在行首加//)
+删除//
+:map ctrl+vB 0xx<ESC> (这样按ctrl+b就可以删除前面的注释)
 
+:map ctrl+vh ijiaobuchong<ESC>(按快捷键ctrl+h可以插入jiaobuchong)
+ab mymail jiabuchong@sina.cn (在vim中输入mymail 就可以完整的显示jiaobuchong@sina.cn)
 

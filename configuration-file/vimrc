@@ -106,6 +106,11 @@ inoremap ' ''<ESC>i
 ""imap p <?php?><ESC>HHi<CR>V<O
 ab /* /**/
 
+"ctrl+p加 // 注释
+map  I//<ESC>
+"去掉//
+map  0xx<ESC> 
+
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 filetype plugin on
 

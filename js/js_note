@@ -97,3 +97,22 @@ var的重要性
     </script>   
 执行str1 = 'Japan'时，t2()中没有声明str1,
 会一直向上找发现一个全局的window.str1,就将"Japan字符串"赋值给了str1
+
+——————————————————————————————————————————————————————————————————————————
+寻找对象
+1、docuemnt.getElementById('idname')，返回值是对象
+2、用标签名来查找，返回值是对象集合(即使找到一个对象)
+  such as:
+  var p =  document.getElementsByTagName('p'); //对象集合
+  p[1].style.background = 'green';
+3、对于表单元素可以用name查询
+对于<input type="text" name="username" />
+var input  = document.getElementsByName('username'); //返回值对象集合
+alert(input[0].value);  //打印其值
+4、按照类名查找，返回对象是
+document.getElementsByClassName();
+5、找子对象children, parent
+docuemnt.getElementById('idname').childNodes; //返回对象集，空白、换行都被当成一个节点
+docuemnt.getElementById('idname').children; //children非标准属性值，各浏览器支持甚好
+
+var p =  document.getElementsByTagName('p')。panretNode; //字节点的父节点
