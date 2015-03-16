@@ -116,3 +116,4 @@ docuemnt.getElementById('idname').childNodes; //返回对象集，空白、换�
 docuemnt.getElementById('idname').children; //children非标准属性值，各浏览器支持甚好
 
 var p =  document.getElementsByTagName('p')。panretNode; //字节点的父节点
+
