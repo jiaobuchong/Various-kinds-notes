@@ -150,6 +150,10 @@ groupadd onegroup 创建组
 useradd oneuser 创建用户
 chgrp onegroup oneuser 把一个用户添加到组里面
 
+usermod -a -G group user 将一个用户添加到组中
+-a表示将user添加到group中，而不必离开其他用户组
+groups www-data 查询www-data用户属于那个组
+
 cp -a test3 test5    #加上-a参数复制整个目录，如果test5存在，test3会被放入test5中
 cp hello world                    #将hello文件内容复制到world文件
 
@@ -187,4 +191,18 @@ du -hs *  list current directory, every directory's
 
 whereis ls 查看ls的二进制可执行文件在哪里
 whatis ls 查看ls的功能
+
+fdisk -l 查看一块硬盘的分区情况
+blkid 查看磁盘类型,可以查看影盘的分区情况
+df -h 查看硬盘使用情况
+
+netstat -apn | grep mysql 查看mysql listen的端口号
+ps -e | grep ssh  查看一个进程是否启动
+
+
+
+
+
+
+
 

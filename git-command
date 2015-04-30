@@ -1,0 +1,43 @@
+版本回退
+git log or git log --pretty=oneline 查看提交日志
+
+such as:
+jack@jiaobuchong:~/learngit$ git log --pretty=oneline 
+da9764cb13b5cc2695931a3b4c4e3bd8cf754899 append a new line
+2584c0e6997c2466e2c13600ae7b3d03e17f4676 add one
+3b11dc81446bf2ef221cc677c16bc1d2d499a6ee merry
+c4d330cc7757edaa500a11c32a7b8eef9e019775 life
+
+c4d330cc7757edaa500a11c32a7b8eef9e019775是commit id（版本号）
+首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交da9764cb13b5cc2695931a3b4c4e3bd8cf754899
+上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+
+现在使用reset回退到上一个版本
+git reset --hard HEAD^
+
+git reset --hard da9764cb13b5cc2695931a3b4c4e3bd8cf754899(只要加上前面的commit id就可以回退到当前版本)
+另外一种办法是使用git reflog
+$ git reflog (git reflog用来记录你的每一次命令)
+2584c0e HEAD@{0}: reset: moving to HEAD^
+da9764c HEAD@{1}: reset: moving to da9764cb13b5cc2695931a3b4c4e3bd8cf754899
+2584c0e HEAD@{2}: reset: moving to HEAD^
+da9764c HEAD@{3}: commit: append a new line
+2584c0e HEAD@{4}: commit: add one
+3b11dc8 HEAD@{5}: commit: merry
+c4d330c HEAD@{6}: commit (initial): life
+看到我的append a new line 的commit id 是da9764c
+然后：
+$ git reset --hard da9764c(又回到了"append a new line"版本)
+HEAD is now at da9764c append a new line
+
+Total:
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+Git跟踪并管理的是修改，而非文件。
+
+
+
+
+
+

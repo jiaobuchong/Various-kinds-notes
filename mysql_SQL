@@ -1,5 +1,7 @@
 CREATE DATABASE test
     DEFAULT CHARACTER SET latin1 COLLCATE latin1_swedish_ci;   #创建数据库时指定字符集
+    create database cishop default character set utf8;
+
 CREATE TABLE some ()
     DEFAULT CHARACTER SET charset_name [COLLATE collation_name];
 ALTER TABLE tb_name DEFAULT CHARACTER SET charset_name [COLLATEV collation_name];
